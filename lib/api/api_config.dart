@@ -3,7 +3,7 @@
 
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import '../services/backend_service.dart';
+import '../services/detect_port.dart';
 
 class ApiConfig {
   // Production vs Development API URLs
