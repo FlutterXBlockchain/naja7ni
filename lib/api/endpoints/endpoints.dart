@@ -3,21 +3,18 @@
 
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import '../services/detect_port.dart';
+import '../../core/helpers/detect_port.dart';
 
-class ApiConfig {
+class ApiEndpoints {
   // Production vs Development API URLs
-  static const String _productionApiUrl = 'https://your-production-api.com/api/auth';
+  static const String _productionApiUrl = '$_productionBaseUrl/api/auth';
   static const String _productionBaseUrl = 'https://your-production-api.com';
   
   // Environment detection
-  static bool get isProduction => kReleaseMode || 
-    const bool.fromEnvironment('PRODUCTION', defaultValue: false);
-  
-  static bool get isDevelopment => !isProduction;
+  static bool get isProduction => false;
   
   /// Get the appropriate API base URL based on environment
-  static String get apiBaseUrl {
+  static String get apiAuthUrl {
     if (isProduction) {
       // Production: Use predefined production URL
       return const String.fromEnvironment('API_URL', defaultValue: _productionApiUrl);
@@ -36,12 +33,12 @@ class ApiConfig {
     }
   }
   
-  /// Get base URL without /api/auth suffix for custom endpoints
+  /// Get base url without /api/auth suffix for custom endpoints
   static String get baseUrl {
     if (isProduction) {
       return const String.fromEnvironment('BASE_URL', defaultValue: _productionBaseUrl);
     } else {
-      return apiBaseUrl.replaceAll('/api/auth', '');
+      return apiAuthUrl.replaceAll('/api/auth', '');
     }
   }
   
