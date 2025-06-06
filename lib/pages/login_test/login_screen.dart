@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
+import '../../api/services/login_service.dart';
 import 'dashboard_screen.dart';
 import 'register_screen.dart';
 
@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _apiService = ApiService();
+  final _apiService = LoginService();
   String? _errorMessage;
   bool _isLoading = false;
 
